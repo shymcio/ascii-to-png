@@ -7,6 +7,14 @@ ASCII_CHARS = "@%#*+=-:. "
 
 
 def image_to_ascii(image_path, output_path, width=100):
+    """
+    Convert an image to ASCII art and save it to a text file.
+
+    Parameters:
+    image_path (str): Path to the input image file.
+    output_path (str): Path to save the output ASCII art text file.
+    width (int): Width of the output ASCII art in characters. Default is 100 characters.
+    """
     image = Image.open(image_path)
     aspect_ratio = image.height / image.width
     new_height = int(aspect_ratio * width)
@@ -25,6 +33,13 @@ def image_to_ascii(image_path, output_path, width=100):
 
 
 def ascii_to_image(ascii_path, output_path):
+    """
+    Convert ASCII art to an image and save it as a PNG file.
+
+    Parameters:
+    ascii_path (str): Path to the input ASCII art text file.
+    output_path (str): Path to save the output image file.
+    """
     char_to_gray = {char: i * 32 for i, char in enumerate(ASCII_CHARS)}
 
     with open(ascii_path, "r") as f:
@@ -45,6 +60,10 @@ def ascii_to_image(ascii_path, output_path):
 
 
 def convert_image_to_ascii():
+    """
+    Open a file dialog to select an image and convert it to ASCII art.
+    The ASCII art is then saved to a user-specified text file.
+    """
     image_path = filedialog.askopenfilename(filetypes=[("Image files", "*.png;*.jpg;*.jpeg")])
     if image_path:
         output_path = filedialog.asksaveasfilename(defaultextension=".txt", filetypes=[("Text files", "*.txt")])
@@ -54,6 +73,10 @@ def convert_image_to_ascii():
 
 
 def convert_ascii_to_image():
+    """
+    Open a file dialog to select an ASCII art text file and convert it to an image.
+    The image is then saved to a user-specified PNG file.
+    """
     ascii_path = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
     if ascii_path:
         output_path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
@@ -63,6 +86,9 @@ def convert_ascii_to_image():
 
 
 def main():
+    """
+    Create the main application window and add buttons for converting images to ASCII art and vice versa.
+    """
     root = tk.Tk()
     root.title("Image to ASCII Art Converter")
     root.geometry("400x200")
